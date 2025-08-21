@@ -41,6 +41,7 @@ class Trash:
 def generateTrash():
     if random.random() < 0.005:
       Trash(random.randint(int(screenwidth*0.05), int(screenwidth*0.9)),screenheight*0.007,random.randint(0,17))
+
       
 def moveTrash(speed=1):
   subpoints =False
