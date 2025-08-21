@@ -52,8 +52,6 @@ def moveTrash(speed=1):
       subpoints = True
   return subpoints
       
-    
-
 def renderTrash(screen):
   subpoints = False
   if moveTrash():
