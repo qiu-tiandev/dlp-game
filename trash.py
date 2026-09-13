@@ -1,5 +1,8 @@
 import random
+import os
 from score import *
+
+ASSETS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "assets")
 trash = {}
 trashId = 0
 movementCycles = 0
@@ -7,8 +10,8 @@ cache = {}
 speed =0.35
 def initTrash(screenw,screenh):
   global nonrecycable,recycable,cache,generatedtrash,bin
-  nonrecycable = pygame.image.load("non-recycable.png").convert_alpha()
-  recycable = pygame.image.load("recycable.png").convert_alpha()
+  nonrecycable = pygame.image.load(os.path.join(ASSETS_DIR, "non-recycable.png")).convert_alpha()
+  recycable = pygame.image.load(os.path.join(ASSETS_DIR, "recycable.png")).convert_alpha()
   global screenwidth,screenheight
   screenwidth = screenw
   screenheight = screenh

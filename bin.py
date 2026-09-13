@@ -1,12 +1,15 @@
+import os
 import pygame
+
+ASSETS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "assets")
 
 class Bin:
     def __init__(self, screen_width, screen_height, screen):
         self.screenwidth = screen_width
         self.screenheight = screen_height
         self.screen = screen
-        self.recycle = pygame.image.load("recycle_bin.png")
-        self.general = pygame.image.load("general_bin.png")
+        self.recycle = pygame.image.load(os.path.join(ASSETS_DIR, "recycle_bin.png"))
+        self.general = pygame.image.load(os.path.join(ASSETS_DIR, "general_bin.png"))
         self.recycle = pygame.transform.smoothscale(self.recycle, (round(self.screenwidth*0.2), round(self.screenheight*0.3)))
         self.general = pygame.transform.smoothscale(self.general, (round(self.screenwidth*0.2), round(self.screenheight*0.2)))
         # original code

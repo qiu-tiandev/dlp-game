@@ -1,10 +1,12 @@
 from os import waitid_result
+import os
 import pygame
 import sys
 import bin
 from bin import Bin
 from trash import *
 import score
+ASSETS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "assets")
 # Initialize Pygame
 pygame.init()
 clock = pygame.time.Clock()
@@ -26,7 +28,7 @@ big_font = pygame.font.Font(None, 50)
 small_font = pygame.font.Font(None, 30)
 # Define blue color
 blue = (0,0,125)
-background_image = pygame.image.load('background.png').convert()
+background_image = pygame.image.load(os.path.join(ASSETS_DIR, 'background.png')).convert()
 background_image = pygame.transform.smoothscale(background_image, (width*1, height*1))
 def handleCollision(bin_instance, generatedtrash):
     collided = False
@@ -49,7 +51,7 @@ def handleCollision(bin_instance, generatedtrash):
 
 # Define lives
 lives = 5
-heart_image = pygame.image.load("lives.png")
+heart_image = pygame.image.load(os.path.join(ASSETS_DIR, "lives.png"))
 def subtractLives():
     global lives
     lives-=1
