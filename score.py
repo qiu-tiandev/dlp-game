@@ -16,5 +16,5 @@ class Score:
         return self.points
 
     def draw(self, screen, x=10, y=10, color=(0, 0, 255)):
-        score_text = self.font.render(f"Score: {self.points}", True, color)
+        score_text = self.font.render(f"SCORE: {self.points}", True, color)
         screen.blit(score_text, (x, y))

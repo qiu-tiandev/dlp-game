@@ -76,7 +76,8 @@ while running:
         subtractLives()
     if generateTrash():
         score.subtract_points()
-    speed_trash(score.get_score())
+    if speed_trash(score.get_score()):
+        score.subtract_points(20)
     score.draw(screen)
     renderTrash(screen)
     renderLives()

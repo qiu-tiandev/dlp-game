@@ -1,9 +1,10 @@
-import pygame
 import random
 from score import *
 trash = {}
 trashId = 0
+movementCycles = 0
 cache = {}
+speed =0.35
 def initTrash(screenw,screenh):
   global nonrecycable,recycable,cache,generatedtrash,bin
   nonrecycable = pygame.image.load("non-recycable.png").convert_alpha()
@@ -39,34 +40,37 @@ class Trash:
     trashId +=1
     generatedtrash[trashId] = [x,y,type]
 def generateTrash():
-    if random.random() < 0.005:
+    if random.random() < 0.004:
+    #if random.random() < 0.005:
       #Trash(random.randint(int(screenwidth*0.05), int(screenwidth*0.9)),screenheight*0.007,random.randint(0,17))
-      Trash(random.randint(int(screenwidth*0.05), int(screenwidth*0.9)), 0, random.randint(0,17))
+      Trash(random.randint(int(screenwidth*0.05), int(screenwidth*0.8)), 0, random.randint(0,17))
       
-def moveTrash(speed=1):
+def moveTrash(speed):
+  global movementCycles
   subpoints =False
+  movementCycles +=1
+  move = (movementCycles // speed) > 0
   for i in list(generatedtrash.keys()):
-    generatedtrash[i][1] += speed
+    if move:generatedtrash[i][1] += 1
     if generatedtrash[i][1] > screenheight*0.8:
       generatedtrash.pop(i)
       subpoints = True
   return subpoints
-      
+
 def renderTrash(screen):
   subpoints = False
-  if moveTrash():
-    subpoints = True
   for i in generatedtrash:
     sprite = cache[generatedtrash[i][2]]
     screen.blit(sprite, (generatedtrash[i][0], generatedtrash[i][1]))
-    return subpoints
-def getTrash():
+  return subpoints 
+def getTrash(): 
   return generatedtrash
 
 
 def speed_trash(points, trashhole = 1000):
-  speed = 1
-  while points >= trashhole:
-    speed += 1
-    moveTrash(int(speed))
+  global speed
+  if points >= trashhole:
+    speed += 0.4
     trashhole += 1000
+  return moveTrash(speed)
+  
